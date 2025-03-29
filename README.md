@@ -1,8 +1,8 @@
-# StreamSense: Smart Streaming Subscription Assistant
+# StreamWise AI: Smart Streaming Subscription Assistant
 
-**StreamSense** is an AI-powered chatbot that helps users make **cost-effective** decisions about their video streaming subscriptions. With so many platforms (Netflix, Disney+, Prime Video, etc.), users often overspend on multiple subscriptions.
+**StreamWise AI** is an AI-powered chatbot that helps users make **cost-effective** decisions about their video streaming subscriptions. With so many platforms (Netflix, Disney+, Prime Video, etc.), users often overspend on multiple subscriptions.
 
-StreamSense empowers users by:
+StreamWise AI empowers users by:
 - 📅 **Tracking upcoming shows** on various platforms.
 - 🎯 **Recommending the best platforms** based on personal viewing preferences.
 - 💸 **Suggesting which subscriptions to pause/unsubscribe** to save money.
@@ -85,7 +85,7 @@ StreamSense empowers users by:
 
 **Retrieval-Augmented Generation (RAG)** combines the power of real-time data retrieval with the flexibility of generative models to produce highly accurate and context-rich responses.
 
-### **How StreamSense Uses RAG:**
+### **How StreamWise AI Uses RAG:**
 
 1. **User Query:**  
    A user asks, “What shows are coming to Netflix next month?”
@@ -176,7 +176,7 @@ WHERE platform = 'Netflix'
 
 ---
 
-## 🏆 Why StreamSense?
+## 🏆 Why StreamWise AI?
 
 - 💡 **Money-Saving Insights:** Prioritize subscriptions that matter and cut out excess.
 - ⚡ **Effortless Subscription Management:** AI handles the decision-making.
@@ -194,4 +194,4 @@ WHERE platform = 'Netflix'
 
 ## 🔗 Conclusion
 
-**StreamSense** aims to revolutionize how users manage streaming subscriptions by offering cost-saving insights while keeping them entertained. By combining the power of **AI**, automation, and smart data analysis, StreamSense makes it easier than ever to stay entertained without breaking the bank.
+**StreamWise AI** aims to revolutionize how users manage streaming subscriptions by offering cost-saving insights while keeping them entertained. By combining the power of **AI**, automation, and smart data analysis, StreamWise AI makes it easier than ever to stay entertained without breaking the bank.
