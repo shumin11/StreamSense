@@ -23,7 +23,7 @@ app.listen(PORT, () => {
 
 app.use(
     cors({
-      origin: "http://localhost:5173", // Frontend URL
+      origin: "http://localhost:5173", 
       methods: ["GET", "POST"],
     })
 );

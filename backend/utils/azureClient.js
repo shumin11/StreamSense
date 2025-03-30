@@ -3,14 +3,11 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { AzureKeyCredential } from "@azure/core-auth";
 import dotenv from "dotenv";
 
-// Load environment variables from .env
 dotenv.config();
 
-// Get environment variables
 const endpoint = process.env.AZURE_INFERENCE_SDK_ENDPOINT;
 const key = process.env.AZURE_INFERENCE_SDK_KEY;
 
-// Use AzureKeyCredential if API key is available, otherwise fallback to DefaultAzureCredential
 let client;
 if (key) {
   console.log("✅ Using API Key for Authentication");

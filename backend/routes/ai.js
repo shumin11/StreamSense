@@ -1,4 +1,3 @@
-// backend/routes/ai.js
 import express from "express";
 import client from "../utils/azureClient.js";
 
