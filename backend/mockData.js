@@ -126,7 +126,7 @@ async function createTablesAndInsertMockData() {
         "New secrets emerge as Regus Patoff continues to manipulate CompWare.",
       cast: "Christoph Waltz, Nat Wolff",
       imageUrl:
-        "https://tse2.mm.bing.net/th?id=OIP.5sYJ6FXB6TPPRyXHS-0TfgHaEK&pid=Api",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlqOTceHbFIzQRSKrBMAVCKLIewCMJpRh9bQ&s​",
       resourceLink: "https://www.amazon.com/dp/B09Y3Y8QXZ",
     },
     {
@@ -138,7 +138,7 @@ async function createTablesAndInsertMockData() {
         "James Reece returns to fight new enemies after exposing corruption.",
       cast: "Chris Pratt, Taylor Kitsch",
       imageUrl:
-        "https://tse3.mm.bing.net/th?id=OIP.2hKxXx3v7N7o_fBzeZmJrAHaEK&pid=Api",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwIdE-tIET16F35VyIzIUcYNz2-yGSpyNI3w&s​",
       resourceLink: "https://www.amazon.com/dp/B09XYZ6A12",
     },
 
@@ -175,7 +175,7 @@ async function createTablesAndInsertMockData() {
         "Ahsoka Tano confronts new dangers while protecting the galaxy.",
       cast: "Rosario Dawson, Natasha Liu Bordizzo",
       imageUrl:
-        "https://tse3.mm.bing.net/th?id=OIP.qefUoT2X4NIOWGVzXbYOfAHaEK&pid=Api",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHi18WEMsTFrKSzCGN3kz4h1gxLPUaSZEgug&s",
       resourceLink: "https://www.disneyplus.com/series/ahsoka/81234578",
     },
     {
@@ -186,7 +186,7 @@ async function createTablesAndInsertMockData() {
       synopsis: "Nick Fury uncovers a deeper conspiracy that threatens Earth.",
       cast: "Samuel L. Jackson, Ben Mendelsohn",
       imageUrl:
-        "https://tse1.mm.bing.net/th?id=OIP.rJG8YRmjSnvcEwL8G5-3AgHaEK&pid=Api",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq1o6pvrVhE4nEMVWquG3f8YShdKviMVf-uw&s​",
       resourceLink:
         "https://www.disneyplus.com/series/secret-invasion/81245678",
     },
