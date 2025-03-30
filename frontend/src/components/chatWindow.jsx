@@ -43,7 +43,21 @@ const ChatWindow = () => {
         <CustomParticles />
         <div className="initialContainer">
           <div className="welcomeMessage">
-            <img src="/images/logo.png" alt="StreamWise AI Logo" className="logo" />
+            <header className="header">
+              <img
+                src="/images/logo.png"
+                alt="StreamWise AI Logo"
+                className="logo"
+              />
+            </header>
+            <div className="titleContainer">
+              <h2 className="appTitle">StreamAI</h2>
+              <p className="appDescription">
+                Your intelligent streaming companion for personalized
+                recommendations and insights
+              </p>
+            </div>
+
             <h1 className="welcomeTitle">What can I help you with?</h1>
             <input
               className="initialInput"
@@ -63,7 +77,11 @@ const ChatWindow = () => {
       <CustomParticles />
       <div className="container">
         <header className="header">
-          <img src="/images/logo.png" alt="StreamWise AI Logo" className="logo" />
+          <img
+            src="/images/logo.png"
+            alt="StreamWise AI Logo"
+            className="logo"
+          />
         </header>
         <div className="chatWindow">
           {messages.map((msg, index) => (

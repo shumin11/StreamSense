@@ -103,3 +103,24 @@
     background-color: white;
   }
   
+  .titleContainer {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .appTitle {
+    font-size: 2.8rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .appDescription {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  
