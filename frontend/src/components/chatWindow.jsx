@@ -80,6 +80,52 @@ const ChatWindow = () => {
     );
     return <div dangerouslySetInnerHTML={{ __html: content }} />;
   };
+  const renderPrice = () => {
+    return (
+      <table className="subscription-table">
+        <tr>
+          <th>Netflix</th>
+          <th>Amazon Prime Video</th>
+          <th>Disney+</th>
+        </tr>
+        <tr>
+          <td>
+            <div className="plan-name">Basic Plan</div>
+            <div className="price">$6.99 USD / $7.99 CAD</div>
+            <div className="features">Features: Ad-supported, Single device, HD quality</div>
+            <div className="plan-name">Standard Plan</div>
+            <div className="price">$15.49 USD / $16.49 CAD</div>
+            <div className="features">Features: Ad-free, 2 devices, HD quality</div>
+            <div className="plan-name">Premium Plan</div>
+            <div className="price">$22.99 USD / $23.99 CAD</div>
+            <div className="features">Features: Ad-free, 4 devices, 4K quality</div>
+            <a href="https://netflix.com/signup" className="subscribe-btn" target="_blank" rel="noopener noreferrer">Subscribe Now</a>
+          </td>
+          <td>
+            <div className="plan-name">Basic Plan</div>
+            <div className="price">$8.99 USD / $9.99 CAD</div>
+            <div className="features">Features: Ad-supported, Single device, HD quality</div>
+            <div className="plan-name">Premium Plan</div>
+            <div className="price">$14.99 USD / $16.99 CAD</div>
+            <div className="features">Features: Ad-free, Unlimited devices, 4K quality, Free shipping</div>
+            <a href="https://amazon.com/prime" className="subscribe-btn" target="_blank" rel="noopener noreferrer">Subscribe Now</a>
+          </td>
+          <td>
+            <div className="plan-name">Basic Plan</div>
+            <div className="price">$7.99 USD / $8.99 CAD</div>
+            <div className="features">Features: Ad-supported, 4 devices, HD quality</div>
+            <div className="plan-name">Standard Plan</div>
+            <div className="price">$13.99 USD / $14.99 CAD</div>
+            <div className="features">Features: Ad-free, 4 devices, 4K quality, HDR</div>
+            <div className="plan-name">Premium Plan</div>
+            <div className="price">$19.99 USD / $21.99 CAD</div>
+            <div className="features">Features: Ad-free, 4 devices, 4K quality, HDR, Exclusive content</div>
+            <a href="https://disneyplus.com" className="subscribe-btn" target="_blank" rel="noopener noreferrer">Subscribe Now</a>
+          </td>
+        </tr>
+      </table>
+    );
+  };
 
   return (
     <>
@@ -108,6 +154,9 @@ const ChatWindow = () => {
                 {renderMessage(msg.content)}
               </div>
             ))}
+        </div>
+        <div className="price">
+          {renderPrice()}
         </div>
       </div>
     </>
