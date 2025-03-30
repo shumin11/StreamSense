@@ -33,16 +33,67 @@ async function createTablesAndInsertMockData() {
 
   // Mock Data for Shows
   const mockShows = [
+    // Netflix Shows
     {
       platform: "Netflix",
       title: "Pulse",
       releaseDate: "2025-04-03",
       genre: "Medical Drama",
-      synopsis: "Set in a Level 1 Trauma Center in Miami during a deadly hurricane.",
+      synopsis:
+        "Set in a Level 1 Trauma Center in Miami during a deadly hurricane.",
       cast: "Willa Fitzgerald, Colin Woodell, Justina Machado",
-      imageUrl: "https://tse3.mm.bing.net/th?id=OIP.NsL9-thzVE0VqZzmarBoogHaE8&pid=Api",
+      imageUrl:
+        "https://tse3.mm.bing.net/th?id=OIP.NsL9-thzVE0VqZzmarBoogHaE8&pid=Api",
       resourceLink: "https://www.netflix.com/title/81234567",
     },
+    {
+      platform: "Netflix",
+      title: "Black Mirror: Season 7",
+      releaseDate: "2025-04-10",
+      genre: "Dystopian Anthology",
+      synopsis:
+        "Exploring the dark relationship between technology and society.",
+      cast: "Cristin Milioti, Will Poulter, Emma Corrin",
+      imageUrl:
+        "https://tse1.mm.bing.net/th?id=OIP.dfNsVzEfJ64TmkstBc4hmgHaEH&pid=Api",
+      resourceLink: "https://www.netflix.com/title/80227634",
+    },
+    {
+      platform: "Netflix",
+      title: "Devil May Cry",
+      releaseDate: "2025-04-03",
+      genre: "Animated Urban Fantasy",
+      synopsis:
+        "Dante battles demons to prevent the demonic invasion of Earth.",
+      cast: "Johnny Yong Bosch, Scout Taylor-Compton, Hoon Lee",
+      imageUrl:
+        "https://tse3.mm.bing.net/th?id=OIP.SRqLXo0-_3bdNBCQQ1PEXwHaEf&pid=Api",
+      resourceLink: "https://www.netflix.com/title/81098043",
+    },
+    {
+      platform: "Netflix",
+      title: "You: Season 5",
+      releaseDate: "2025-04-24",
+      genre: "Psychological Thriller",
+      synopsis: "Joe returns to New York to confront his past.",
+      cast: "Penn Badgley, Charlotte Ritchie, Madeline Brewer",
+      imageUrl:
+        "https://tse2.mm.bing.net/th?id=OIP.jcYEr2EPDgo9yPlsSHJksQHaJQ&pid=Api",
+      resourceLink: "https://www.netflix.com/title/80124522",
+    },
+    {
+      platform: "Netflix",
+      title: "Ransom Canyon",
+      releaseDate: "2025-04-17",
+      genre: "Western Family Drama",
+      synopsis: "A Texas rancher navigates love and family challenges.",
+      cast: "Josh Duhamel, Minka Kelly",
+      imageUrl:
+        "https://tse1.mm.bing.net/th?id=OIP.9JMNeiLp7TnaokCjpRV10AHaEK&pid=Api",
+      resourceLink: "https://www.netflix.com/title/81456789",
+    },
+
+    // Amazon Prime Video Shows
     {
       platform: "Amazon Prime Video",
       title: "The Bondsman",
@@ -50,18 +101,94 @@ async function createTablesAndInsertMockData() {
       genre: "Action Horror",
       synopsis: "Fred Herbert, a bounty hunter, returns from the dead.",
       cast: "Kevin Bacon, Jennifer Nettles, Beth Grant",
-      imageUrl: "https://tse3.mm.bing.net/th?id=OIP.H2itbxEmivGgLJyv2efi0gHaDE&pid=Api",
+      imageUrl:
+        "https://tse3.mm.bing.net/th?id=OIP.H2itbxEmivGgLJyv2efi0gHaDE&pid=Api",
       resourceLink: "https://www.amazon.com/dp/B09X1YZ9P2",
     },
+    {
+      platform: "Amazon Prime Video",
+      title: "Étoile",
+      releaseDate: "2025-04-24",
+      genre: "Comedy",
+      synopsis:
+        "Two ballet companies attempt to save their institutions by swapping stars.",
+      cast: "Luke Kirby, Charlotte Gainsbourg, Lou de Laâge",
+      imageUrl:
+        "https://tse3.mm.bing.net/th?id=OIP.VG2jrv693xDuszPT3KtA2gHaD4&pid=Api",
+      resourceLink: "https://www.amazon.com/dp/B09Y3XYZ45",
+    },
+    {
+      platform: "Amazon Prime Video",
+      title: "The Consultant: Season 2",
+      releaseDate: "2025-04-15",
+      genre: "Thriller",
+      synopsis:
+        "New secrets emerge as Regus Patoff continues to manipulate CompWare.",
+      cast: "Christoph Waltz, Nat Wolff",
+      imageUrl:
+        "https://tse2.mm.bing.net/th?id=OIP.5sYJ6FXB6TPPRyXHS-0TfgHaEK&pid=Api",
+      resourceLink: "https://www.amazon.com/dp/B09Y3Y8QXZ",
+    },
+    {
+      platform: "Amazon Prime Video",
+      title: "The Terminal List: Dark Territory",
+      releaseDate: "2025-04-20",
+      genre: "Action Thriller",
+      synopsis:
+        "James Reece returns to fight new enemies after exposing corruption.",
+      cast: "Chris Pratt, Taylor Kitsch",
+      imageUrl:
+        "https://tse3.mm.bing.net/th?id=OIP.2hKxXx3v7N7o_fBzeZmJrAHaEK&pid=Api",
+      resourceLink: "https://www.amazon.com/dp/B09XYZ6A12",
+    },
+
+    // Disney+ Shows
     {
       platform: "Disney+",
       title: "Andor: Season 2",
       releaseDate: "2025-04-22",
       genre: "Science Fiction",
-      synopsis: "The second and final season follows Cassian Andor's journey.",
+      synopsis: "The second season follows Cassian Andor's journey.",
       cast: "Diego Luna, Stellan Skarsgård, Forest Whitaker",
-      imageUrl: "https://tse4.mm.bing.net/th?id=OIP.nsbdDlu_g4SjxTJ3FlfJCgHaK9&pid=Api",
+      imageUrl:
+        "https://tse4.mm.bing.net/th?id=OIP.nsbdDlu_g4SjxTJ3FlfJCgHaK9&pid=Api",
       resourceLink: "https://www.disneyplus.com/series/andor/81112345",
+    },
+    {
+      platform: "Disney+",
+      title: "Dying for Sex",
+      releaseDate: "2025-04-04",
+      genre: "Drama",
+      synopsis:
+        "A woman diagnosed with cancer embarks on a journey of self-discovery.",
+      cast: "Michelle Williams",
+      imageUrl:
+        "https://tse2.mm.bing.net/th?id=OIP.prjLOms3tg_5J2eXrDwz0wHaEK&pid=Api",
+      resourceLink: "https://www.disneyplus.com/title/82387645",
+    },
+    {
+      platform: "Disney+",
+      title: "Ahsoka: Season 2",
+      releaseDate: "2025-04-15",
+      genre: "Science Fiction",
+      synopsis:
+        "Ahsoka Tano confronts new dangers while protecting the galaxy.",
+      cast: "Rosario Dawson, Natasha Liu Bordizzo",
+      imageUrl:
+        "https://tse3.mm.bing.net/th?id=OIP.qefUoT2X4NIOWGVzXbYOfAHaEK&pid=Api",
+      resourceLink: "https://www.disneyplus.com/series/ahsoka/81234578",
+    },
+    {
+      platform: "Disney+",
+      title: "Secret Invasion: Season 2",
+      releaseDate: "2025-04-28",
+      genre: "Superhero",
+      synopsis: "Nick Fury uncovers a deeper conspiracy that threatens Earth.",
+      cast: "Samuel L. Jackson, Ben Mendelsohn",
+      imageUrl:
+        "https://tse1.mm.bing.net/th?id=OIP.rJG8YRmjSnvcEwL8G5-3AgHaEK&pid=Api",
+      resourceLink:
+        "https://www.disneyplus.com/series/secret-invasion/81245678",
     },
   ];
 
@@ -132,7 +259,6 @@ async function createTablesAndInsertMockData() {
       subscriptionLink: "https://www.disneyplus.com/bundle",
     },
   ];
-
   // Insert Mock Shows
   for (const show of mockShows) {
     await db.run(
@@ -155,7 +281,7 @@ async function createTablesAndInsertMockData() {
   for (const plan of mockSubscriptions) {
     await db.run(
       `INSERT INTO subscriptions (platform, planName, priceUSD, priceCAD, features, subscriptionLink)
-       VALUES (?, ?, ?, ?, ?, ?)`,
+     VALUES (?, ?, ?, ?, ?, ?)`,
       [
         plan.platform,
         plan.planName,
