@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import CustomParticles from "./CustomParticles";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import "./ChatWindow.css";
 
 const ChatWindow = () => {
@@ -20,21 +22,62 @@ const ChatWindow = () => {
     setMessages(updatedMessages);
 
     try {
-      const response = await axios.post("http://localhost:5001/api/ai/chat", {
+      const response = await axios.post("http://localhost:5001/api/ai/query", {
         messages: updatedMessages,
       });
 
       const aiResponse = {
         role: "assistant",
-        content: response.data.choices[0].message.content,
+        content: response.data.answer,
       };
 
       setMessages([...updatedMessages, aiResponse]);
     } catch (error) {
       console.error("Error:", error);
+      const errorResponse = {
+        role: "assistant",
+        content: "I apologize, but I encountered an error. Please try again.",
+      };
+      setMessages([...updatedMessages, errorResponse]);
     }
 
     setInput("");
+  };
+
+  const renderMessage = (content) => {
+    // Check if the content contains show cards
+    if (content.includes('<div class="show-card">')) {
+      return <div dangerouslySetInnerHTML={{ __html: content }} />;
+    }
+
+    // For regular markdown content
+    return (
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
+          img: ({ node, ...props }) => (
+            <img
+              {...props}
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                borderRadius: "8px",
+                margin: "10px 0",
+              }}
+              alt={props.alt || "Show image"}
+            />
+          ),
+          p: ({ node, ...props }) => (
+            <p {...props} style={{ margin: "8px 0" }} />
+          ),
+          strong: ({ node, ...props }) => (
+            <strong {...props} style={{ color: "#ba19b7" }} />
+          ),
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    );
   };
 
   if (!isChatStarted) {
@@ -89,7 +132,7 @@ const ChatWindow = () => {
               key={index}
               className={msg.role === "user" ? "userMessage" : "aiMessage"}
             >
-              {msg.content}
+              {renderMessage(msg.content)}
             </div>
           ))}
         </div>

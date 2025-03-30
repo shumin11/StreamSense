@@ -40,7 +40,7 @@
 }
 
 .welcomeTitle {
-  font-size: 2.0rem;
+  font-size: 2rem;
   color: #fff;
   margin-bottom: 30px;
   font-weight: 600;
@@ -91,6 +91,42 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+.aiMessage table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.aiMessage th,
+.aiMessage td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.aiMessage th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #333;
+}
+
+.aiMessage tr:last-child td {
+  border-bottom: none;
+}
+
+.aiMessage tr:hover {
+  background-color: #f8f9fa;
+}
+
+.aiMessage p {
+  margin: 0;
+  line-height: 1.5;
+}
+
 .input {
   width: 80%;
   height: 60px;
@@ -122,8 +158,7 @@
 
 @keyframes titleGlow {
   from {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2),
-      0 0 20px rgba(8, 8, 133, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 0 0 20px rgba(8, 8, 133, 0.3);
   }
   to {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2),
@@ -132,7 +167,7 @@
 }
 
 .appDescription {
-  font-size: 2.0rem;
+  font-size: 2rem;
   color: #b44fda;
   max-width: 600px;
   margin: 0 auto;
@@ -145,4 +180,38 @@
 .appDescription:hover {
   transform: translateY(-2px);
   color: #ffffff;
+}
+
+.aiMessage .show-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 15px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+}
+
+.aiMessage .show-card h3 {
+  color: #ba19b7;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.aiMessage .show-card p {
+  margin: 8px 0;
+  line-height: 1.5;
+  color: #333;
+}
+
+.aiMessage .show-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 15px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.aiMessage strong {
+  color: #ba19b7;
+  font-weight: 600;
 }
