@@ -1,11 +1,12 @@
 # StreamWise AI: Smart Streaming Subscription Assistant
 
-**StreamWise AI** is an AI-powered chatbot that helps users make **cost-effective** decisions about their video streaming subscriptions. With so many platforms (Netflix, Disney+, Prime Video, etc.), users often overspend on multiple subscriptions.
+**StreamWise AI** is an AI-powered subscription recommendation system that helps users make **cost-effective** decisions about which streaming platforms to subscribe to based on upcoming content and their personal preferences. 
 
-StreamWise AI empowers users by:
-- 📅 **Tracking upcoming shows** on various platforms.
-- 🎯 **Recommending the best platforms** based on personal viewing preferences.
-- 💸 **Suggesting which subscriptions to pause/unsubscribe** to save money.
+Instead of being a typical chatbot, **StreamWise AI** leverages the same backend technologies (AI models, SQL query generation, and RAG pipelines) to analyze user preferences and recommend the most relevant platforms for the next subscription cycle.
+
+---
+## 🎥 Demo Video
+
 
 ---
 
@@ -17,18 +18,6 @@ StreamWise AI empowers users by:
 - **Smart Query Generation:** Dynamically generate SQL queries to fetch relevant data from a database based on user input.
 - **Automated Data Updates:** Use Cron jobs to periodically fetch the latest streaming content and update the movie database.
 - **User-Friendly Experience:** Ensure the chatbot interface is easy to use and visually appealing with rich media and dynamic responses.
-
----
-
-## 🚀 Features
-
-- **Chatbot with AI-Powered Responses:** Answers queries with movie recommendations and subscription advice.
-- **Database Management:** Stores data on available movies, streaming platforms, and release dates for easy querying.
-- **SQL Query Generation:** AI generates SQL queries based on user input for efficient data retrieval.
-- **Rich Media Responses:** Provides movie details, release dates, streaming platforms, and clickable resource links.
-- **Automated Data Updates:** Periodically fetches and updates movie data using Cron jobs.
-- **Subscription Cost Analysis:** Track, compare, and optimize subscription costs.
-- **RAG for Enhanced Responses:** Retrieve real-time movie/show data from the database and augment it with AI-generated context.
 
 ---
 
@@ -71,14 +60,27 @@ StreamWise AI empowers users by:
 
 ## 🔥 Core Features
 
-- **Chatbot with AI-powered responses.**
-- **SQL Query Generation:** Dynamically generate and execute SQL queries.
-- **Movie & Show Discovery:** List upcoming movies and shows across multiple platforms.
-- **RAG-Enhanced Recommendations:** Retrieve relevant real-time data and enrich responses with AI-generated suggestions.
-- **Rich Media Display:** Responses with images, resource links, and clean UI.
-- **Subscription Cost Management:** Add, update, and analyze subscription costs.
-- **Automated Data Updates:** Cron job for periodic database updates.
+- ✅ **Platform Recommendations for Next Month:**  
+   Suggests the best platform(s) to subscribe to next month based on upcoming content and user preferences.  
 
+- ✅ **SQL Query Generation:**  
+   Dynamically generates and executes SQL queries to filter and fetch relevant shows and platform data.  
+
+- ✅ **Movie & Show Discovery:**  
+   Lists upcoming movies and shows across multiple platforms to help users decide.  
+
+- ✅ **RAG-Enhanced Recommendations:**  
+   Retrieves relevant real-time data from the database and enriches responses with AI-generated insights.  
+
+- ✅ **Rich Media Display:**  
+   Presents subscription recommendations with clickable resource links and detailed information about upcoming shows.  
+
+- ❗ **Subscription Cost Management:**  
+   Planned for future updates to analyze and optimize subscription costs.  
+
+- ❗ **Automated Data Updates & Web Scraping:**  
+   Considered but not yet implemented.
+   
 ---
 
 ## 🧠 What is RAG (Retrieval-Augmented Generation)?
@@ -102,79 +104,6 @@ StreamWise AI empowers users by:
 5. **Rich Response:**  
    The AI generates a user-friendly response with clickable links, images, and subscription advice.
 
----
-
-## 🗂️ Database Schema
-
-```sql
-CREATE TABLE shows (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  title TEXT,
-  release_date TEXT,
-  platform TEXT,
-  image_url TEXT,
-  resource_link TEXT
-);
-```
-
-```sql
-CREATE TABLE subscriptions (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  platform TEXT,
-  plan_type TEXT,
-  monthly_cost REAL,
-  renewal_date TEXT,
-  auto_renew BOOLEAN
-);
-```
-
-## 🗂️ API Endpoints
-
-| Method | Endpoint         | Description                       |
-|--------|------------------|-----------------------------------|
-| GET    | /api/movies       | Get list of all movies           |
-| GET    | /api/movies/:id   | Get details of a specific movie  |
-| POST   | /api/query        | Run SQL query based on user input |
-| POST   | /api/chat         | Send user input to AI model       |
-| POST   | /api/scrape       | Trigger web scraper manually     |
-
----
-
-## ⏱️ Cron Job & Scraper
-
-- **Purpose:** Fetch and update streaming data automatically.
-- **Schedule:** Run every 1 month.
-- **Scraper Logic:** Extract show data (title, release date, image, platform).
-- **Data Persistence:** Store the extracted data in the SQLite database for querying.
-
----
-
-## 🤖 Query Generation Logic
-
-### **User Input**
-"What shows are coming to Netflix next month?"
-
-### **Generated Prompt**
-myPrompt = "User input is {user_input}, my table schema is {title, release_date, platform},\n\n can you write a SQLite script to get what the user wants in executable query format?"
-
-### **Generated SQL Query**
-
-```sql
-SELECT title, release_date, platform
-FROM movies
-WHERE platform = 'Netflix'
-  AND release_date >= '2025-04-01'
-  AND release_date <= '2025-04-30';
-```
-
-## 🎁 Deliverables
-
--  Fully functional chatbot integrated with Azure AI.
--  Accurate and dynamic movie/show data with regular updates.
--  API to query and fetch movie information.
--  Scraper with Cron job for data updates. (stretch)
-
----
 
 ## 🏆 Why StreamWise AI?
 
@@ -186,6 +115,7 @@ WHERE platform = 'Netflix'
 
 ## 🎥 Future Enhancements
 
+- 🔁 **Automated Data Updates & Scraping**: Enable real-time updates with web scraping and Cron jobs.
 - 📊 **Advanced Analytics:** Analyze user preferences to refine recommendations.
 - 🔔 **Personalized Alerts:** Notify users about upcoming shows of interest.
 - 🌐 **API Expansion:** Support additional streaming platforms.
