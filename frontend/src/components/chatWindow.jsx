@@ -20,7 +20,7 @@ const ChatWindow = () => {
     setMessages(updatedMessages);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/ai/chat", {
+      const response = await axios.post("http://localhost:5001/api/ai/chat", {
         messages: updatedMessages,
       });
 
@@ -51,20 +51,20 @@ const ChatWindow = () => {
               />
             </header>
             <div className="titleContainer">
-              <h2 className="appTitle">StreamAI</h2>
+              <h2 className="appTitle">StreamWise AI</h2>
               <p className="appDescription">
-                Your intelligent streaming companion for personalized
-                recommendations and insights
+                🎯 Save Money. 📺 Never Miss a Show. 💡 Smart Streaming
+                Decisions.
               </p>
             </div>
 
-            <h1 className="welcomeTitle">What can I help you with?</h1>
+            <h2 className="welcomeTitle">What can I help with?</h2>
             <input
               className="initialInput"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-              placeholder="Ask us something..."
+              placeholder="Ready to Stream Smarter? Ask me anything ..."
             />
           </div>
         </div>
