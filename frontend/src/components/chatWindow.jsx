@@ -9,11 +9,9 @@ const ChatWindow = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isChatStarted, setIsChatStarted] = useState(false);
-
   useEffect(() => {
     const sendInitialMessage = async () => {
       const initialMessage = { role: "user", content: "next month shows" };
-      setMessages([initialMessage]);
 
       try {
         const response = await axios.post("http://localhost:5001/api/ai/query", {
@@ -22,17 +20,17 @@ const ChatWindow = () => {
 
         const aiResponse = {
           role: "assistant",
-          content: response.data.answer,
+          content: response.data.data,
         };
 
-        setMessages([initialMessage, aiResponse]);
+        setMessages([aiResponse]);
       } catch (error) {
         console.error("Error:", error);
         const errorResponse = {
           role: "assistant",
           content: "I apologize, but I encountered an error. Please try again.",
         };
-        setMessages([initialMessage, errorResponse]);
+        setMessages([errorResponse]);
       }
     };
 
@@ -40,6 +38,9 @@ const ChatWindow = () => {
   }, []);
 
   const sendMessage = async () => {
+    const inputBox = document.querySelector(".input");
+    const input = inputBox ? inputBox.value : "";
+    console.log("input", input);
     if (input.trim() === "") return;
 
     if (!isChatStarted) {
@@ -47,7 +48,7 @@ const ChatWindow = () => {
     }
 
     const userMessage = { role: "user", content: input };
-    const updatedMessages = [...messages, userMessage];
+    const updatedMessages = [userMessage];
     setMessages(updatedMessages);
 
     try {
@@ -57,28 +58,61 @@ const ChatWindow = () => {
 
       const aiResponse = {
         role: "assistant",
-        content: response.data.answer,
+        content: response.data.data,
       };
 
-      setMessages([...updatedMessages, aiResponse]);
+      setMessages([aiResponse]);
     } catch (error) {
       console.error("Error:", error);
       const errorResponse = {
         role: "assistant",
         content: "I apologize, but I encountered an error. Please try again.",
       };
-      setMessages([...updatedMessages, errorResponse]);
+      // setMessages([errorResponse]);
     }
 
     setInput("");
   };
 
-  const renderMessage = (content) => {
-    content = content.substring(
-      content.indexOf("<div"),
-      content.lastIndexOf("</div>") + "</div>".length
+  const renderWindow = (content) => {
+    console.log(content);
+    const platforms = ["Netflix", "Disney+", "Amazon Prime Video"];
+    return (
+      <div className="platform-container">
+        {platforms.map((platform) => {
+          const platformShows = content.filter((show) => show.platform === platform);
+          if (platformShows.length === 0) return null; // Skip rendering if no content for the platform
+          return (
+            <div key={platform} className="platform-column">
+              <h2>📺 {platform}</h2>
+              {platformShows.map((show) => (
+                <div key={show.id} className="show">
+                  <div className="show-title">🎬 {show.title}</div>
+                  <div className="show-synopsis">{show.synopsis}</div>
+                  <img
+                    src={show.imageUrl}
+                    alt={show.title}
+                    width="200"
+                    height="150"
+                  />
+                  <p>📅 Release Date: {show.releaseDate}</p>
+                  <p>🎭 <strong>Genre:</strong> {show.genre}</p>
+                  <p>👥 <strong>Cast:</strong> {show.cast}</p>
+                  <a
+                    href={show.resourceLink}
+                    className="subscribe-btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Subscribe Now
+                  </a>
+                </div>
+              ))}
+            </div>
+          );
+        })}
+      </div>
     );
-    return <div dangerouslySetInnerHTML={{ __html: content }} />;
   };
   const renderPrice = () => {
     return (
@@ -131,27 +165,25 @@ const ChatWindow = () => {
     <>
       <CustomParticles />
       <div className="container">
-        <header className="header">
-          <img
+        <div className="brand"><span>StreamWise AI</span>     <img
             src="/images/logo.png"
             alt="StreamWise AI Logo"
             className="logo"
-          />
-        </header>
-
+          /></div>
+        <div className="searchContainer">
         <input
           className="input"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          placeholder="Ask something..."
+          placeholder="Show name, platform, genre, date etc." 
         />
+   
+          </div>
         <div className="chatWindow">
           {messages
             .filter((msg) => msg.role === "assistant")
             .map((msg, index) => (
               <div key={index} className="aiMessage">
-                {renderMessage(msg.content)}
+                {renderWindow(msg.content)}
               </div>
             ))}
         </div>
