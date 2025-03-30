@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import CustomParticles from "./CustomParticles";
 import "./ChatWindow.css";
 
 const ChatWindow = () => {
@@ -38,45 +39,51 @@ const ChatWindow = () => {
 
   if (!isChatStarted) {
     return (
-      <div className="initialContainer">
-        <div className="welcomeMessage">
-        <img src="/images/logo.png" alt="StreamWise AI Logo" className="logo" />
-          <h1 className="welcomeTitle">What can I help you with?</h1>
-          <input
-            className="initialInput"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-            placeholder="Ask me anything about upcoming TV shows..."
-          />
+      <>
+        <CustomParticles />
+        <div className="initialContainer">
+          <div className="welcomeMessage">
+            <img src="/images/logo.png" alt="StreamWise AI Logo" className="logo" />
+            <h1 className="welcomeTitle">What can I help you with?</h1>
+            <input
+              className="initialInput"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+              placeholder="Ask us something..."
+            />
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
   return (
-    <div className="container">
-      <header className="header">
-        <img src="/images/logo.png" alt="StreamWise AI Logo" className="logo" />
-      </header>
-      <div className="chatWindow">
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={msg.role === "user" ? "userMessage" : "aiMessage"}
-          >
-            {msg.content}
-          </div>
-        ))}
+    <>
+      <CustomParticles />
+      <div className="container">
+        <header className="header">
+          <img src="/images/logo.png" alt="StreamWise AI Logo" className="logo" />
+        </header>
+        <div className="chatWindow">
+          {messages.map((msg, index) => (
+            <div
+              key={index}
+              className={msg.role === "user" ? "userMessage" : "aiMessage"}
+            >
+              {msg.content}
+            </div>
+          ))}
+        </div>
+        <input
+          className="input"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+          placeholder="Ask something..."
+        />
       </div>
-      <input
-        className="input"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-        placeholder="Ask something..."
-      />
-    </div>
+    </>
   );
 };
 
