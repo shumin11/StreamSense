@@ -6,7 +6,7 @@ Instead of being a typical chatbot, **StreamWise AI** leverages the same backend
 
 ---
 ## 🎥 Demo Video
-
+https://drive.google.com/file/d/1h5Oe_9mxHdoCd56iyyNA3BBazlcL-vNl/view?usp=sharing
 
 ---
 
