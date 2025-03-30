@@ -28,82 +28,83 @@ router.post("/query", async (req, res) => {
 
   try {
     // First, determine if this is a database query or general conversation
-    const intentPrompt = [
-      {
-        role: "system",
-        content: `
-          You are an intent classifier. Determine if the user's message requires database access or is a general conversation.
-          Return ONLY "database" or "conversation" as your response.
-          
-          Database queries are questions about future shows, subscriptions, or streaming services that would require looking up data.
-          General conversation includes greetings, small talk, or questions not related to the database content.
-        `,
-      },
-      {
-        role: "user",
-        content: lastUserMessage,
-      },
-    ];
+    // const intentPrompt = [
+    //   {
+    //     role: "system",
+    //     content: `
+    //       You are an intent classifier. Determine if the user's message requires database access or is a general conversation.
+    //       Return ONLY "database" or "conversation" as your response.
 
-    const intentResponse = await client.path("chat/completions").post({
-      body: {
-        messages: intentPrompt,
-        max_tokens: 50,
-        model: process.env.DEPLOYMENT_NAME,
-        temperature: 0,
-      },
-    });
+    //       Database queries are questions about future shows, subscriptions, or streaming services that would require looking up data.
+    //       General conversation includes greetings, small talk, or questions not related to the database content.
+    //     `,
+    //   },
+    //   {
+    //     role: "user",
+    //     content: lastUserMessage,
+    //   },
+    // ];
 
-    if (intentResponse.status !== "200") {
-      throw new Error(
-        `Azure AI intent classification error: ${intentResponse.body}`
-      );
-    }
+    // const intentResponse = await client.path("chat/completions").post({
+    //   body: {
+    //     messages: intentPrompt,
+    //     max_tokens: 50,
+    //     model: process.env.DEPLOYMENT_NAME,
+    //     temperature: 0,
+    //   },
+    // });
 
-    const intent = intentResponse.body.choices[0]?.message?.content
-      ?.trim()
-      .toLowerCase();
-    console.log("🎯 Detected intent:", intent);
+    // if (intentResponse.status !== "200") {
+    //   throw new Error(
+    //     `Azure AI intent classification error: ${intentResponse.body}`
+    //   );
+    // }
 
-    if (intent === "conversation") {
-      // Handle general conversation
-      const conversationPrompt = [
-        {
-          role: "system",
-          content: `
-            You are a helpful AI assistant for StreamWise, a streaming service recommendation platform.
-            Be friendly and concise in your responses.
-            If the user is asking about your capabilities, mention that you can help with:
-            - Finding shows and movies
-            - Comparing streaming service prices
-            - Getting recommendations based on preferences
-            - Answering questions about streaming platforms
-          `,
-        },
-        ...messages.slice(-5), // Include last 5 messages for context
-      ];
+    // const intent = intentResponse.body.choices[0]?.message?.content
+    //   ?.trim()
+    //   .toLowerCase();
+    // console.log("🎯 Detected intent:", intent);
+    // const intent = "database";
 
-      const conversationResponse = await client.path("chat/completions").post({
-        body: {
-          messages: conversationPrompt,
-          max_tokens: 300,
-          model: process.env.DEPLOYMENT_NAME,
-        },
-      });
+    // if (intent === "conversation") {
+    //   // Handle general conversation
+    //   const conversationPrompt = [
+    //     {
+    //       role: "system",
+    //       content: `
+    //         You are a helpful AI assistant for StreamWise, a streaming service recommendation platform.
+    //         Be friendly and concise in your responses.
+    //         If the user is asking about your capabilities, mention that you can help with:
+    //         - Finding shows and movies
+    //         - Comparing streaming service prices
+    //         - Getting recommendations based on preferences
+    //         - Answering questions about streaming platforms
+    //       `,
+    //     },
+    //     ...messages.slice(-5), // Include last 5 messages for context
+    //   ];
 
-      if (conversationResponse.status !== "200") {
-        throw new Error(
-          `Azure AI conversation error: ${conversationResponse.body}`
-        );
-      }
+    //   const conversationResponse = await client.path("chat/completions").post({
+    //     body: {
+    //       messages: conversationPrompt,
+    //       max_tokens: 300,
+    //       model: process.env.DEPLOYMENT_NAME,
+    //     },
+    //   });
 
-      const conversationAnswer =
-        conversationResponse.body.choices[0]?.message?.content;
-      return res.json({
-        answer: conversationAnswer,
-        data: null,
-      });
-    }
+    //   if (conversationResponse.status !== "200") {
+    //     throw new Error(
+    //       `Azure AI conversation error: ${conversationResponse.body}`
+    //     );
+    //   }
+
+    //   const conversationAnswer =
+    //     conversationResponse.body.choices[0]?.message?.content;
+    //   return res.json({
+    //     answer: conversationAnswer,
+    //     data: null,
+    //   });
+    // }
 
     // If intent is "database", proceed with the existing database query logic
     const queryGenerationPrompt = [
@@ -232,74 +233,74 @@ router.post("/query", async (req, res) => {
       throw new Error("Error executing database query: " + dbError.message);
     }
 
-    const answerPrompt = [
-      {
-        role: "system",
-        content: `
-        You are a helpful assistant that takes database results and formats them in a clear, organized way.
-        
-        The user originally asked: "${lastUserMessage}"
-        
-        If the results contain show information, organize the data into three columns based on the platform: Netflix, Disney+, and Prime Video.
-        Format the information in the following style:
-        
-        <div class="platform-container">
-        <div class="platform-column">
-          <h2>📺 Netflix</h2>
-          <!-- List Netflix shows here -->
-          <div class="show">
-          <div class="show-title">🎬 The Example Show</div>
-          <div class="show-synopsis">A witty show about daily life.</div>
-          <img src="https://example.com/show-image.jpg" alt="The Example Show" width="200" />
-          <p>📅 Release Date: 2023-10-01</p>
-          <p>🎭 Genre: Comedy</p>
-          <p>👥 Cast: John Doe, Jane Smith</p>
-          </div>
-        </div>
-        <div class="platform-column">
-          <h2>📺 Disney+</h2>
-          <!-- List Disney+ shows here -->
-        </div>
-        <div class="platform-column">
-          <h2>📺 Prime Video</h2>
-          <!-- List Prime Video shows here -->
-        </div>
-        </div>
-        
-        Important:
-        - only return html, with no additional text
-        - Use HTML tags for better formatting
-        - Do NOT use markdown syntax (**) in the HTML output
-        - For shows, display the image using the <img> tag
-        - If no image is available for shows, display "No image available"
-        - If no results are found for a platform, display "No matching results found for [Platform Name]"
-        - Use proper HTML structure with divs and paragraphs
-      `,
-      },
-      {
-        role: "user",
-        content: JSON.stringify(queryResult),
-      },
-    ];
+    // const answerPrompt = [
+    //   {
+    //     role: "system",
+    //     content: `
+    //     You are a helpful assistant that takes database results and formats them in a clear, organized way.
 
-    const finalResponse = await client.path("chat/completions").post({
-      body: {
-        messages: answerPrompt,
-        max_tokens: 800,
-        model: process.env.DEPLOYMENT_NAME,
-      },
-    });
+    //     The user originally asked: "${lastUserMessage}"
 
-    if (finalResponse.status !== "200") {
-      throw new Error(`Azure AI final answer error: ${finalResponse.body}`);
-    }
+    //     If the results contain show information, organize the data into three columns based on the platform: Netflix, Disney+, and Prime Video.
+    //     Format the information in the following style:
 
-    const finalAnswer = finalResponse.body.choices[0]?.message?.content;
-    console.log("🤖 AI final answer:", finalAnswer);
+    //     <div class="platform-container">
+    //     <div class="platform-column">
+    //       <h2>📺 Netflix</h2>
+    //       <!-- List Netflix shows here -->
+    //       <div class="show">
+    //       <div class="show-title">🎬 The Example Show</div>
+    //       <div class="show-synopsis">A witty show about daily life.</div>
+    //       <img src="https://example.com/show-image.jpg" alt="The Example Show" width="200" />
+    //       <p>📅 Release Date: 2023-10-01</p>
+    //       <p>🎭 Genre: Comedy</p>
+    //       <p>👥 Cast: John Doe, Jane Smith</p>
+    //       </div>
+    //     </div>
+    //     <div class="platform-column">
+    //       <h2>📺 Disney+</h2>
+    //       <!-- List Disney+ shows here -->
+    //     </div>
+    //     <div class="platform-column">
+    //       <h2>📺 Prime Video</h2>
+    //       <!-- List Prime Video shows here -->
+    //     </div>
+    //     </div>
+
+    //     Important:
+    //     - only return html, with no additional text
+    //     - Use HTML tags for better formatting
+    //     - Do NOT use markdown syntax (**) in the HTML output
+    //     - For shows, display the image using the <img> tag
+    //     - If no image is available for shows, display "No image available"
+    //     - If no results are found for a platform, display "No matching results found for [Platform Name]"
+    //     - Use proper HTML structure with divs and paragraphs
+    //   `,
+    //   },
+    //   {
+    //     role: "user",
+    //     content: JSON.stringify(queryResult),
+    //   },
+    // ];
+
+    // const finalResponse = await client.path("chat/completions").post({
+    //   body: {
+    //     messages: answerPrompt,
+    //     max_tokens: 800,
+    //     model: process.env.DEPLOYMENT_NAME,
+    //   },
+    // });
+
+    // if (finalResponse.status !== "200") {
+    //   throw new Error(`Azure AI final answer error: ${finalResponse.body}`);
+    // }
+
+    // const finalAnswer = finalResponse.body.choices[0]?.message?.content;
+    // console.log("🤖 AI final answer:", finalAnswer);
 
     // 4. Return final answer (plus the raw data if desired)
     res.json({
-      answer: finalAnswer,
+      answer: "",
       data: queryResult,
     });
   } catch (err) {
