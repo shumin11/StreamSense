@@ -59,14 +59,20 @@
 }
 
 .chatWindow {
-  width: 80%;
+  width: 95%; /* Full width minus small side margins */
   height: 70%;
   padding: 20px;
   overflow-y: scroll;
-  margin-bottom: 20px;
+  margin: 50px 10px; /* Larger margin on top (50px) and small margin on sides (10px) */
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.chatWindow::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
 }
 
 .userMessage {
@@ -455,22 +461,47 @@
   transition: transform 0.2s ease-in-out;
 }
 
+.platform-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.platform-column {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  max-width: 350px;
+  border: 1px solid #ddd;
+  transition: transform 0.2s ease-in-out;
+}
+
 .platform-column:hover {
   transform: translateY(-5px);
 }
 
-/* Platform Title (Netflix, Disney+, Prime Video) */
+/* Platform Title - Modern Look */
 .platform-column h2 {
-  color: #ba19b7;
-  font-size: 1.4rem;
-  font-weight: bold;
+  font-family: "Poppins", sans-serif; /* Sleek and modern font */
+  color: #8e44ad;
+  font-size: 1.6rem;
+  font-weight: 600;
   margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* Show Title */
+/* Show Title - Elegant Serif Font */
 .show-title {
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-family: "Merriweather", serif; /* Adds a classy look */
+  font-size: 1.4rem;
+  font-weight: bold;
   color: #333;
   margin-bottom: 10px;
 }
@@ -485,9 +516,9 @@
 
 /* Show Image - Consistent Size */
 .show img {
-  width: 100%; /* Ensure all images take up full width */
-  height: 200px; /* Fixed height for all images */
-  object-fit: cover; /* Ensures images fill the container while maintaining aspect ratio */
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
   border-radius: 12px;
   margin: 10px 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
