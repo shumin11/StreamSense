@@ -46,79 +46,79 @@ const ChatWindow = () => {
 
   const renderMessage = (content) => {
     // Check if the content contains HTML cards or tables
-    if (
-      content.includes('<div class="show-card">') ||
-      content.includes('<div class="price-card">') ||
-      content.includes('<table class="subscription-table">') ||
-      content.includes('<table class="show-table">')
-    ) {
-      return <div dangerouslySetInnerHTML={{ __html: content }} />;
-    }
+    
+    content = content.substring(
+      content.indexOf("<div"),
+      content.lastIndexOf("</div>") + "</div>".length
+    );
+    console.log("Content:", content);
+    // if (
+    //   content.includes('<div class="show-card">') ||
+    //   content.includes('<div class="price-card">') ||
+    //   content.includes('<table class="subscription-table">') ||
+    //   content.includes('<table class="show-table">')
+    // ) {
+       return <div dangerouslySetInnerHTML={{ __html: content }} />;
+    // }
+
+
 
     // For regular markdown content
     return (
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        components={{
-          img: ({ node, ...props }) => (
-            <img
-              {...props}
-              style={{
-                maxWidth: "100%",
-                height: "auto",
-                borderRadius: "8px",
-                margin: "10px 0",
-              }}
-              alt={props.alt || "Show image"}
-            />
-          ),
-          p: ({ node, ...props }) => (
-            <p {...props} style={{ margin: "8px 0" }} />
-          ),
-          strong: ({ node, ...props }) => (
-            <strong {...props} style={{ color: "#ba19b7" }} />
-          ),
-        }}
-      >
-        {content}
-      </ReactMarkdown>
+      <div className="threeColumnDiff">
+      <div className="column">
+        <h3>Column 1</h3>
+        <img src="/images/image1.jpg" alt="Image 1" className="diffImage" />
+        <img src="/images/image2.jpg" alt="Image 2" className="diffImage" />
+      </div>
+      <div className="column">
+        <h3>Column 2</h3>
+        <img src="/images/image3.jpg" alt="Image 3" className="diffImage" />
+        <img src="/images/image4.jpg" alt="Image 4" className="diffImage" />
+      </div>
+      <div className="column">
+        <h3>Column 3</h3>
+        <img src="/images/image5.jpg" alt="Image 5" className="diffImage" />
+        <img src="/images/image6.jpg" alt="Image 6" className="diffImage" />
+      </div>
+    </div>
     );
   };
 
-  if (!isChatStarted) {
-    return (
-      <>
-        <CustomParticles />
-        <div className="initialContainer">
-          <div className="welcomeMessage">
-            <header className="header">
-              <img
-                src="/images/logo.png"
-                alt="StreamWise AI Logo"
-                className="logo"
-              />
-            </header>
-            <div className="titleContainer">
-              <h2 className="appTitle">StreamWise AI</h2>
-              <p className="appDescription">
-                🎯 Save Money. 📺 Never Miss a Show. 💡 Smart Streaming
-                Decisions.
-              </p>
-            </div>
+  // if (!isChatStarted) {
+  //   return (
+  //     <>
+  //       <CustomParticles />
+  //       <div className="initialContainer">
+  //         <div className="welcomeMessage">
+  //           <header className="header">
+  //             <img
+  //               src="/images/logo.png"
+  //               alt="StreamWise AI Logo"
+  //               className="logo"
+  //             />
+  //           </header>
+  //           <div className="titleContainer">
+  //             <h2 className="appTitle">StreamWise AI</h2>
+  //             <p className="appDescription">
+  //               🎯 Save Money. 📺 Never Miss a Show. 💡 Smart Streaming
+  //               Decisions.
+  //             </p>
+  //           </div>
 
-            <h2 className="welcomeTitle">What can I help with?</h2>
-            <input
-              className="initialInput"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-              placeholder="Ready to Stream Smarter? Ask me anything ..."
-            />
-          </div>
-        </div>
-      </>
-    );
-  }
+  //           <h2 className="welcomeTitle">What can I help with?</h2>
+  //           <input
+  //             className="initialInput"
+  //             value={input}
+  //             onChange={(e) => setInput(e.target.value)}
+  //             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+  //             placeholder="Ready to Stream Smarter? Ask me anything ..."
+  //           />
+  //         </div>
+  //       </div>
+  //     </>
+  //   );
+  // }
 
   return (
     <>
@@ -131,7 +131,15 @@ const ChatWindow = () => {
             className="logo"
           />
         </header>
-        <div className="chatWindow">
+       
+        <input
+          className="input"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+          placeholder="Ask something..."
+        />
+         <div className="chatWindow">
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -141,13 +149,7 @@ const ChatWindow = () => {
             </div>
           ))}
         </div>
-        <input
-          className="input"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          placeholder="Ask something..."
-        />
+
       </div>
     </>
   );
