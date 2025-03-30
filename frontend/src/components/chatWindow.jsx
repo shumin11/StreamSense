@@ -45,8 +45,13 @@ const ChatWindow = () => {
   };
 
   const renderMessage = (content) => {
-    // Check if the content contains show cards
-    if (content.includes('<div class="show-card">')) {
+    // Check if the content contains HTML cards or tables
+    if (
+      content.includes('<div class="show-card">') ||
+      content.includes('<div class="price-card">') ||
+      content.includes('<table class="subscription-table">') ||
+      content.includes('<table class="show-table">')
+    ) {
       return <div dangerouslySetInnerHTML={{ __html: content }} />;
     }
 

@@ -81,14 +81,13 @@
 }
 
 .aiMessage {
-  text-align: left;
-  margin: 8px;
-  padding: 12px 16px;
-  background-color: #eaeaea;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+  background-color: #f8f9fa;
   border-radius: 12px;
-  max-width: 70%;
-  margin-right: auto;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
 }
 
 .aiMessage table {
@@ -214,4 +213,224 @@
 .aiMessage strong {
   color: #ba19b7;
   font-weight: 600;
+}
+
+/* Grid container for price cards */
+.aiMessage .price-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin: 15px 0;
+}
+
+.aiMessage .price-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+
+.aiMessage .price-card h3 {
+  color: #ba19b7;
+  margin: 0;
+  font-size: 1.4rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.aiMessage .price-card p {
+  margin: 0;
+  line-height: 1.5;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.aiMessage .price-card p:first-of-type {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.aiMessage .price-card p:last-of-type {
+  color: #333;
+  font-weight: 500;
+}
+
+.aiMessage .price-card a {
+  display: inline-block;
+  margin-top: auto;
+  padding: 8px 16px;
+  background-color: #ba19b7;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.aiMessage .price-card a:hover {
+  background-color: #9a1597;
+}
+
+.aiMessage .price-card .features {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 5px 0;
+  padding-left: 10px;
+  border-left: 2px solid #eee;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .aiMessage .price-cards-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aiMessage .subscription-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.aiMessage .subscription-table th {
+  background-color: #ba19b7;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.aiMessage .subscription-table td {
+  padding: 15px;
+  border: 1px solid #eee;
+  vertical-align: top;
+}
+
+.aiMessage .subscription-table tr:first-child td {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #333;
+}
+
+.aiMessage .subscription-table .plan-name {
+  color: #ba19b7;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.aiMessage .subscription-table .price {
+  font-size: 1.1rem;
+  margin: 5px 0;
+}
+
+.aiMessage .subscription-table .features {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 5px 0;
+  padding-left: 10px;
+  border-left: 2px solid #eee;
+}
+
+.aiMessage .subscription-table .subscribe-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #ba19b7;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.aiMessage .subscription-table .subscribe-btn:hover {
+  background-color: #9a1597;
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+  .aiMessage .subscription-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+.aiMessage .show-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.aiMessage .show-table th {
+  background-color: #ba19b7;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.aiMessage .show-table td {
+  padding: 15px;
+  border: 1px solid #eee;
+  vertical-align: top;
+}
+
+.aiMessage .show-table tr:first-child td {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #333;
+}
+
+.aiMessage .show-table .show-title {
+  color: #ba19b7;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.aiMessage .show-table .show-synopsis {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+.aiMessage .show-table img {
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+  margin: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+  .aiMessage .show-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .aiMessage .show-table img {
+    max-width: 150px;
+  }
 }
